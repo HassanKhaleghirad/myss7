@@ -65,7 +65,7 @@
                    |________________|
 ** M3UA Protocol Elements
  * Common Message Header
-   The protocol messages for MTP3-User Adaptation require a message
+ *    The protocol messages for MTP3-User Adaptation require a message
    header that contains the adaptation layer version, the message type,
    and message length.
 
