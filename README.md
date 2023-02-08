@@ -42,3 +42,40 @@
       SCTP - Stream Control Transmission Protocol
       NIF - Nodal Interworking Function
       
+ * nodal    interworking function (NIF) that allows the MGC to exchange SS7    signalling messages with the SS7-based SEP.  The NIF within the SGP
+   serves as the interface within the SGP between the MTP3 and M3UA
+ * SCCP Transport between IPSPs
+
+               ********    IP    ********
+               * IPSP *          * IPSP *
+               ********          ********
+
+               +------+          +------+
+               |SCCP- |          |SCCP- |
+               | User |          | User |
+               +------+          +------+
+               | SCCP |          | SCCP |
+               +------+          +------+
+               | M3UA |          | M3UA |
+               +------+          +------+
+               | SCTP |          | SCTP |
+               +------+          +------+
+               |  IP  |          |  IP  |
+               +------+          +------+
+                   |________________|
+** M3UA Protocol Elements
+ * Common Message Header
+
+   ** The protocol messages for MTP3-User Adaptation require a message
+   header that contains the adaptation layer version, the message type,
+   and message length.
+
+      0                   1                   2                   3
+      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |    Version    |   Reserved    | Message Class | Message Type  |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |                        Message Length                         |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      \                                                               \
+      /   
