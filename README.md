@@ -9,3 +9,14 @@
 * The distribution of SS7 messages between the SGP and the Application Servers is determined by the Routing Keys and their associated Routing Contexts.  A Routing Key is essentially a set of SS7 parameters used to filter SS7 messages, whereas the Routing Context parameter is a 4-octet value (integer) that is associated to that Routing Key in a 1:1 relationship.  The Routing Context therefore can be viewed as an index into a sending node's Message Distribution Table containing the Routing Key entries.
 * Possible SS7 address/routing information that comprise a Routing Key entry includes, for example, the OPC, DPC, and SIO found in the MTP3 routing label.  Some example Routing Keys are: the DPC alone, the DPC/OPC combination, or the DPC/OPC/SI combination.  The particular information used to define an M3UA Routing Key is application and network dependent, and none of the above examples are mandated.
 *  An Application Server Process may be configured to process signalling traffic related to more than one Application Server, over a single SCTP Association.  In ASP Active and ASP Inactive management messages, the signalling traffic to be started or stopped is discriminated by the Routing Context parameter.  At an ASP, the Routing Context parameter uniquely identifies the range of signalling traffic associated with each Application Server that the ASP is configured to receive.
+*  Routing Keys SHOULD be unique in the sense that each received SS7 signalling message SHOULD have a full or partial match to a single routing result.
+*  There are two ways to provision a Routing Key at an SGP.  A Routing Key may be configured statically using an implementation dependent management interface, or dynamically using the M3UA Routing Key registration procedure.
+*  Message Distribution at the ASP The ASP must choose an SGP to direct a message to the SS7 network.
+*  Signalling Gateway SS7 Layers The SG is responsible for terminating MTP Level 3 of the SS7 protocol, and offering an IP-based extension to its users.
+*  The SGP provides a functional interworking of transport functions
+   between the SS7 network and the IP network by also supporting the M3UA adaptation layer.  It allows the transfer of MTP3-User signalling messages to and from an IP-based Application Server Process where the peer MTP3-User protocol layer exists.
+*  The failover model supports an "n+k" redundancy model, where "n" ASPs
+   is the minimum number of redundant ASPs required to handle traffic and "k" ASPs are available to take over for a failed or unavailable
+   ASP.  Traffic SHOULD be sent after "n" ASPs are active.  "k" ASPs MAY be either active at the same time as "n" or kept inactive until
+   needed due to a failed or unavailable ASP.
+* A "1+1" active/backup redundancy is a subset of this model.  A simplex "1+0" model is also supported as a subset, with no ASP redundancy.
