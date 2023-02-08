@@ -20,3 +20,25 @@
    ASP.  Traffic SHOULD be sent after "n" ASPs are active.  "k" ASPs MAY be either active at the same time as "n" or kept inactive until
    needed due to a failed or unavailable ASP.
 * A "1+1" active/backup redundancy is a subset of this model.  A simplex "1+0" model is also supported as a subset, with no ASP redundancy.
+* The SCTP and TCP Registered User Port Number Assignment for M3UA is 2905.
+* Example 1: ISUP Message Transport
+
+      ********   SS7   *****************   IP   ********
+      * SEP  *---------*      SGP      *--------* ASP  *
+      ********         *****************        ********
+
+      +------+         +---------------+        +------+
+      | ISUP |         |     (NIF)     |        | ISUP |
+      +------+         +------+ +------+        +------+
+      | MTP3 |         | MTP3 | | M3UA |        | M3UA |
+      +------|         +------+-+------+        +------+
+      | MTP2 |         | MTP2 | | SCTP |        | SCTP |
+      +------+         +------+ +------+        +------+
+      |  L1  |         |  L1  | |  IP  |        |  IP  |
+      +------+         +------+ +------+        +------+
+          |_______________|         |______________|
+
+      SEP - SS7 Signalling End Point
+      SCTP - Stream Control Transmission Protocol
+      NIF - Nodal Interworking Function
+      
