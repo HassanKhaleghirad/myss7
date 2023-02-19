@@ -161,3 +161,21 @@
    *   Originating Point Code: 32 bits (unsigned integer)
 
    * Destination Point Code: 32 bits (unsigned integer)
+   * The Originating and Destination Point Code fields contains the OPC and DPC 
+   * Service Indicator: 8 bits (unsigned integer)
+
+*   The Service Indicator field contains the SI field from the original
+   SS7 message justified to the least significant bit.  Unused bits are
+   coded `0'.
+* Network Indicator: 8 bits (unsigned integer)
+
+   * The Network Indicator contains the NI field from the original SS7
+   message justified to the least significant bit.  Unused bits are
+   coded `0'.
+   * The Message Priority field contains the MP bits (if any) from the
+   original SS7 message, both for ANSI-style and TTC-style [26] message
+   priority bits. 
+   * The User Protocol Data field contains an octet string of MTP-User
+   information from the original SS7 message, starting with the first
+   octet of the original SS7 message following the Routing Label.
+   
