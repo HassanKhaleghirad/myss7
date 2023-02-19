@@ -82,6 +82,8 @@
 # Transfer Messages
 * Payload Data Message (DATA)
 *       ** Network Appearance       Optional
+*        *** The Network Appearance parameter value is of local significance only, coordinated between the SGP and ASP.  Therefore, in the case where an ASP is connected to more than one SGP, the same SS7 network context may be identified by different Network Appearance values, depending on which SGP a message is being transmitted/ received.
+*        
         ** Routing Context          Conditional
         ** Protocol Data            Mandatory
         ** Correlation Id           Optional
@@ -110,3 +112,23 @@
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 
+* Where multiple Routing Keys and Routing Contexts are used across a common association, the Routing Context MUST be sent to identify the traffic flow, assisting in the internal distribution of Data messages.
+* Protocol Data: variable length
+
+     ** The Protocol Data parameter contains the original SS7 MTP3
+      message, including the Service Information Octet and Routing
+      Label.
+* The Protocol Data parameter contains the following fields:
+
+      **  Service Indicator
+      **   Network Indicator
+      **    Message Priority
+
+      **   Destination Point Code
+      **   Originating Point Code
+
+      **   Signalling Link Selection Code (SLS)
+
+      **   User Protocol Data, which includes
+
+      **      MTP3-User protocol elements (e.g., ISUP, SCCP, or TUP parameters
