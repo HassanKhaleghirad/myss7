@@ -118,9 +118,18 @@
      ** The Protocol Data parameter contains the original SS7 MTP3
       message, including the Service Information Octet and Routing
       Label.
+     * Protocol Data: variable length
+
+      The Protocol Data parameter contains the original SS7 MTP3
+      message, including the Service Information Octet and Routing
+      Label.
 * The Protocol Data parameter contains the following fields:
 
       **  Service Indicator
+      * Where multiple Routing Keys and Routing
+      Contexts are used across a common association, the Routing Context
+      MUST be sent to identify the traffic flow, assisting in the
+      internal distribution of Data messages.
       **   Network Indicator
       **    Message Priority
 
@@ -132,3 +141,23 @@
       **   User Protocol Data, which includes
 
       **      MTP3-User protocol elements (e.g., ISUP, SCCP, or TUP parameters
+      
+      * The Protocol Data parameter is encoded as follows:
+
+  *      0                   1                   2                   3
+        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |                     Originating Point Code                    |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |                     Destination Point Code                    |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |       SI      |       NI      |      MP       |      SLS      |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       \                                                               \
+       /                     User Protocol Data                        /
+       \                                                               \
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+   *   Originating Point Code: 32 bits (unsigned integer)
+
+   * Destination Point Code: 32 bits (unsigned integer)
