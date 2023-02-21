@@ -179,3 +179,11 @@
    information from the original SS7 message, starting with the first
    octet of the original SS7 message following the Routing Label.
    
+*    Affected Point Code: n x 32 bits
+
+      The Affected Point Code parameter contains a list of Affected
+      Destination Point Code fields, each a three-octet parameter to
+      allow for 14-, 16-, and 24-bit binary formatted SS7 Point Codes.
+      Affected Point Codes that are less than 24 bits are padded on the
+      left to the 24-bit boundary.  The encoding is shown below for ANSI
+      and ITU Point Code examples.
